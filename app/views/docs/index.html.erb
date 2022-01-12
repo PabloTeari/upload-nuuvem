@@ -1,0 +1,45 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-12 p-0">
+        <div class="min-vh-100 text-center m-0  d-flex flex-column justify-content-center">
+
+          <% if !flash[:notice].blank? %>
+            <div>
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+
+          <table class="table" >
+              <thead>
+                <tr class="table-light">
+                    <th>#</th>
+                    <th>Purchaser Name</th>
+                    <th>Item Description</th>
+                    <th>Purchase Count</th>
+                    <th>Merchant Address</th>
+                    <th>Merchant Name</th>
+                    <th>Import File Name</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @docs.each do |doc| %>
+                    <tr>
+                      <td><%= doc.name %></td>
+                      <td><%= link_to "Download",  doc, method: :destroy, confirm: "Are you sure you want to delete #{doc.name}?" %></td>
+                      <td><%= link_to "Delete",  doc, method: :destroy, confirm: "Are you sure you want to delete #{doc.name}?" %></td>
+                      <td><%= link_to "Delete",  doc, method: :destroy, confirm: "Are you sure you want to delete #{doc.name}?" %></td>
+                      <td><%= link_to "Delete",  doc, method: :destroy, confirm: "Are you sure you want to delete #{doc.name}?" %></td>
+                      <td><%= doc.name %></td>
+                    </tr>
+                <% end %>
+              </tbody>
+          </table>
+
+          <%= button_to "New Doc", "docs/new", class: "btn btn-outline-secondary", method: :get %>
+
+          </div>
+        </div>
+    </div>
+</div>
