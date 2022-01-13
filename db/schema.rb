@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_11_204127) do
+ActiveRecord::Schema.define(version: 2022_01_13_040613) do
 
   create_table "docs", force: :cascade do |t|
     t.string "name"
@@ -19,4 +19,38 @@ ActiveRecord::Schema.define(version: 2022_01_11_204127) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "description"
+    t.decimal "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "merchants", force: :cascade do |t|
+    t.string "address"
+    t.string "name"
+    t.integer "item_id_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id_id"], name: "index_merchants_on_item_id_id"
+  end
+
+  create_table "purchasers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer "purchaser_id_id", null: false
+    t.integer "item_id_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id_id"], name: "index_purchases_on_item_id_id"
+    t.index ["purchaser_id_id"], name: "index_purchases_on_purchaser_id_id"
+  end
+
+  add_foreign_key "merchants", "item_ids"
+  add_foreign_key "purchases", "item_ids"
+  add_foreign_key "purchases", "purchaser_ids"
 end

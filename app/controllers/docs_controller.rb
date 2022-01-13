@@ -13,7 +13,13 @@ class DocsController < ApplicationController
 
     parsed = CSV.read(path, col_sep: "\t")
 
-    puts parsed[1]
+    # meed loop
+    name = parsed[1][0].to_s
+    puts "ok"
+    puts Purchaser.exists?(name:name)
+    # if Purchaser.exists?(name:name)
+    # @purchaser = Purchaser.new(name:name)
+    # @purchaser.save
 
     # `purchaser name`, `item description`, `item price`, `purchase count`, `merchant address`, `merchant name`
 

@@ -1,0 +1,11 @@
+class CreateMerchants < ActiveRecord::Migration[7.0]
+  def change
+    create_table :merchants do |t|
+      t.string :address
+      t.string :name
+      t.references :item_id, null: false, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
