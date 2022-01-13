@@ -1,13 +1,6 @@
 require "csv"
 
 class DocsController < ApplicationController
-  def index
-    @docs = Doc.all
-  end
-
-  def new
-    @doc = Doc.new
-  end
 
   def create
 
@@ -22,6 +15,8 @@ class DocsController < ApplicationController
 
     puts parsed[1]
 
+    # `purchaser name`, `item description`, `item price`, `purchase count`, `merchant address`, `merchant name`
+
     # @doc = Doc.new(docs_params)
     # if @doc.save
     #   redirect_to "/", notice: "Successfully uploaded."
@@ -31,15 +26,9 @@ class DocsController < ApplicationController
 
   end
 
-  def destroy
-    @doc = Doc.find(params[:id])
-    @doc.destroy
-    redirect_to "/", notice:  "Successfully deleted."
-  end
-
   private
     def docs_params
-    params.require(:doc).permit(:name,:attachment)
+    params.require(:doc).permit(:attachment)
   end
 
 end
