@@ -3,7 +3,9 @@
 one:
   description: MyString
   price: 9.99
+  merchant: one
 
 two:
   description: MyString
   price: 9.99
+  merchant: two
